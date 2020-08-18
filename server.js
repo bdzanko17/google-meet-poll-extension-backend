@@ -1,9 +1,16 @@
-const io = require('socket.io').listen(4000).sockets;
-
+var express = require('express');
+ var   app = express();
+   var   server = require('http').createServer(app);
+   var  io = require('socket.io').listen(server);
+  var cors = require('cors');
+  
 
 var ansvers={"1":0,"2":0,"3":0}
 
+app.use(cors())
+
 io.on('connect', socket => {
+  console.log("connected :)");
   socket.on("vote",data=>{
     socket.broadcast.emit("active_poll",data);
     socket.emit("active_poll",data);
@@ -20,4 +27,6 @@ io.on('connect', socket => {
   });
 
 });
+
+server.listen(process.env.PORT || 3000);
 

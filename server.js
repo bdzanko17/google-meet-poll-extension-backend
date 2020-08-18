@@ -1,24 +1,5 @@
-const express= require("express");
-const http = require("http");
+const io = require('socket.io').listen(4000).sockets;
 
-const app = express();
-const server = http.createServer(app);
-
-const cors = require('cors');
-app.use(cors());
-app.options('*', cors());
-
-const io = require("socket.io")(server, {
-    handlePreflightRequest: (req, res) => {
-        const headers = {
-            "Access-Control-Allow-Headers": "Content-Type, Authorization",
-            "Access-Control-Allow-Origin": req.headers.origin, //or the specific origin you want to give access to,
-            "Access-Control-Allow-Credentials": true
-        };
-        res.writeHead(200, headers);
-        res.end();
-    }
-});
 
 var ansvers={"1":0,"2":0,"3":0}
 
@@ -40,4 +21,3 @@ io.on('connect', socket => {
 
 });
 
-server.listen(3000);

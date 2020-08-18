@@ -4,6 +4,10 @@ const http = require("http");
 const app = express();
 const server = http.createServer(app);
 
+const cors = require('cors');
+app.use(cors());
+app.options('*', cors());
+
 const io = require("socket.io")(server, {
     handlePreflightRequest: (req, res) => {
         const headers = {

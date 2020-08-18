@@ -1,5 +1,5 @@
 const server = require("http").createServer();
-const io = require("socket.io")(server);
+var io = require('socket.io')(server, { origins: '*:*'});
 
 var ansvers={"1":0,"2":0,"3":0}
 

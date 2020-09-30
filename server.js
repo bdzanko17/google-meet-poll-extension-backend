@@ -25,7 +25,7 @@ io.on("connect", (socket) => {
   });
 
   socket.on("code", (codee) => {
-    if ((code = codee)) socket.emit("organizator", 1);
+    if ((code == codee)) socket.emit("organizator", 1);
   });
 
   socket.on("votes", ({ answer, room }) => {
